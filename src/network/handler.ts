@@ -2,6 +2,7 @@ import Logger from '../utils/logger';
 import Definitions from '../definitions';
 import Session from './session';
 import AccountDatabase from '../database/account';
+import Basic from '../utils/basic';
 
 export default class Handler {
     static handleCheckVersion(session: Session, packet: string) {
@@ -19,9 +20,25 @@ export default class Handler {
         Logger.global.debug('handleCheckAccount: ' + packet);
         AccountDatabase.getAccountByUsername(data[0], (account: AccountDatabase) => {
             if (account) {
-                console.log(account);
+                if (account.banned) {
+                    // if (account.banned > 1) {
+                    //     session.send('AlEb');
+                    // }
+                    session.send('AlEb');
+                }
+                // console.log(account);
+                var originalPass = Basic.encryptPasswordMethod1(account.password, session.key);
+                session.logger.debug('AuthSession->handleCheckAccount >>> password=' + data[1] + ', originalPass=' + originalPass);
 
-                // process connection
+                if (data[1] === originalPass) {
+                    session.account = account;
+                    session.state = 2;
+
+                    session.send("Ad" + session.account.pseudo);
+                    session.send("Ac0");
+                } else {
+                    session.send('AlEx');
+                }
             } else {
                 session.send('AlEx');
             }
