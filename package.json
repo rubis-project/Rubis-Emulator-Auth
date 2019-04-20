@@ -1,0 +1,16 @@
+{
+  "name": "rubis_emulator_auth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/server.js",
+  "scripts": {
+    "watch": "tsc --watch",
+    "build": "tsc"
+  },
+  "author": "zoukidev",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^11.13.6",
+    "typescript": "^3.4.4"
+  }
+}
