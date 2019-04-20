@@ -1,11 +1,12 @@
 import * as mysql from 'mysql';
+import Logger from '../utils/logger';
 
 export default class DatabaseManager {
     static db: any;
-    // static logger: Utils.Logger;
+    static logger: Logger;
 
     static initialize(mysqlConfig: any, callback?: Function): any {
-        // Manager.logger = new Utils.Logger('Database');
+        DatabaseManager.logger = new Logger('MySQL');
         DatabaseManager.db = mysql.createConnection({
             host     : mysqlConfig.host     || 'localhost',
             port     : mysqlConfig.port     || 3306,
@@ -13,8 +14,8 @@ export default class DatabaseManager {
             password : mysqlConfig.password || '',
             database : mysqlConfig.dbname || 'rubis_auth',
         });
-        DatabaseManager.db.connect((err: any) => {
-            if (err) throw err;
+        DatabaseManager.db.connect((err: string) => {
+            if (err) DatabaseManager.logger.error(err);
             if (callback) callback();
         });
     }

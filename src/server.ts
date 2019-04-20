@@ -5,7 +5,6 @@ import Server from './network/server';
 import DatabaseManager from './database/manager';
 
 class AuthServer {
-    static logger: Logger;
     static Config: IConfig;
     static server: any;
 
@@ -22,13 +21,10 @@ class AuthServer {
 
     static loadConfig() {
         AuthServer.Config = Config.load('./config.yml');
-        // console.log('config', AuthServer.Config);
     }
 
     static loadLogger() {
-        AuthServer.logger = new Logger('Auth');
         Logger.global = new Logger('Global');
-
         Logger.global.log('Logger loaded');
     }
 

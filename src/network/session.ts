@@ -7,7 +7,6 @@ export default class Session {
     constructor(socket: any) {
         this.socket = socket;
         this.key = Basic.randomString(32);
-        console.log('new client connected');
 
         socket.on('data', (data: string) => console.log('<<<<<', data.toString()));
         socket.on('close', () => socket.end());
