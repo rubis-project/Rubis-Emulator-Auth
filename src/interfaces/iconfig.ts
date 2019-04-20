@@ -8,6 +8,7 @@ export default interface IConfig {
 interface IConfigMysql {
     host: string;
     port: number;
+    dbname: string;
     user: string;
     password: string;
 }

@@ -6,6 +6,7 @@ port: 444
 mysql:
   host: "127.0.0.1"
   port: 3306
+  dbname: "rubis_auth"
   user: "root"
   password: ""
 

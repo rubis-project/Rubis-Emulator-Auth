@@ -1,6 +1,7 @@
 import Server from './network/server';
 import Config from './utils/config';
 import IConfig from './interfaces/iconfig';
+import DatabaseManager from './database/manager';
 
 class AuthServer {
     static Config: IConfig;
@@ -8,6 +9,9 @@ class AuthServer {
 
     static initialize() {
         AuthServer.loadConfig();
+        DatabaseManager.initialize(AuthServer.Config.mysql, () => {
+            console.log('database Connected');
+        });
         AuthServer.loadServer();
     }
 
@@ -17,7 +21,7 @@ class AuthServer {
 
     static loadConfig() {
         AuthServer.Config = Config.load('./config.yml');
-        console.log('config', AuthServer.Config);
+        // console.log('config', AuthServer.Config);
     }
 
     static loadServer() {
