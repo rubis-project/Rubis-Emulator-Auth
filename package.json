@@ -10,7 +10,11 @@
   "author": "zoukidev",
   "license": "ISC",
   "devDependencies": {
+    "@types/js-yaml": "^3.12.1",
     "@types/node": "^11.13.6",
     "typescript": "^3.4.4"
+  },
+  "dependencies": {
+    "js-yaml": "^3.13.1"
   }
 }

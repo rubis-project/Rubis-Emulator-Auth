@@ -1,0 +1,13 @@
+# Auth config
+host: "127.0.0.1"
+port: 444
+
+# Mysql config
+mysql:
+  host: "127.0.0.1"
+  port: 3306
+  user: "root"
+  password: ""
+
+# Debug mode
+debug: false

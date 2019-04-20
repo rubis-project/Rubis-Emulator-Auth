@@ -10,7 +10,8 @@
     "strict": true,
     "typeRoots": ["./node_modules/@types"],
     "types": [
-      "node"
+      "node",
+      "js-yaml"
     ]
   }
 }
