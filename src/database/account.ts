@@ -33,7 +33,7 @@ export default class AccountDatabase {
         });
     }
 
-    static createAccount(username: string, password: string, pseudo: string, secretQuestion: string, callback?: Function) {
+    static createAccount(username: string, password: string, pseudo: string, banned?: string, callback?: Function) {
         DatabaseManager.db.query('INSERT INTO accounts (username, password, pseudo, banned) VALUES (?, ?, ?, ?)', [username, password, pseudo, 0], (err: string, row: any) => {
             if (err) if (err) Logger.global.error('Account->createAccount >>> An error as occured');
             if (callback) callback();

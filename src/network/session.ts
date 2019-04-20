@@ -44,7 +44,7 @@ export default class Session {
 
     handle(packet: string) : void {
         if (packet == 'Af') { //TODO: Waiting queue
-            return;
+            Handler.waitingQueue(this, packet);
         }
         switch(this.state) {
             case 0:
@@ -53,7 +53,6 @@ export default class Session {
             case 1:
                 Handler.handleCheckAccount(this, packet);
                 break;
-
             case 2:
                 if(packet.indexOf('Ax') == 0){
                     Handler.handleServerList(this, packet);

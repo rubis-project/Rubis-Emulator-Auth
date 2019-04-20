@@ -22,25 +22,27 @@ export default class Handler {
             if (account) {
                 if (account.banned) {
                     // if (account.banned > 1) {
-                    //     session.send('AlEb');
+                    //     session.send('AlEk');
                     // }
                     session.send('AlEb');
                 }
-                // console.log(account);
+                console.log(account);
                 var originalPass = Basic.encryptPasswordMethod1(account.password, session.key);
                 session.logger.debug('AuthSession->handleCheckAccount >>> password=' + data[1] + ', originalPass=' + originalPass);
+                console.log(data[1], originalPass);
 
-                if (data[1] === originalPass) {
+                if (data[1] == originalPass) {
                     session.account = account;
-                    session.state = 2;
+                    session.state = 2; 
 
                     session.send("Ad" + session.account.pseudo);
                     session.send("Ac0");
                 } else {
                     session.send('AlEx');
                 }
+
             } else {
-                session.send('AlEx');
+                // session.send('AlEx');
             }
         });
     }
@@ -48,7 +50,12 @@ export default class Handler {
     static handleServerList(session: any, packet: string) {
         Logger.global.debug('handleServerList: ' + packet);
     }
+
     static handleServerSelection(session: any, packet: string) {
         Logger.global.debug('handleServerSelection: ' + packet);
+    }
+
+    static waitingQueue(session: any, packet: string) {
+        return;
     }
 }
