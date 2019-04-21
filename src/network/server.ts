@@ -20,4 +20,9 @@ export default class Server {
     listen(host?: string, port?: number) {
         this.server.listen(port, host, () => console.log(`Listening on ${host}:${port}`));
     }
+
+    getClientByTicket(ticket: string): any {
+        let key: any = Object.keys(this.clients).filter((key: any) => this.clients[key].key === ticket)[0];
+        return this.clients[key];
+    }
 }

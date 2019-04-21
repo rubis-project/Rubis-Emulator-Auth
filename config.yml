@@ -9,6 +9,9 @@ mysql:
   dbname: "rubis_auth"
   user: "root"
   password: ""
+http:
+  port: 5050
+  password: "mySecretPassword"
 
 # Debug mode
 debug: false

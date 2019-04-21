@@ -4,7 +4,7 @@ export default class Definitions {
     static deviceName: string = "Rubis";
     static dofusVersion: string = '1.29.1';
 
-    static getVersionString() : string {
+    static getVersion() : string {
         let version = Definitions.version;
         return version.major + '.' + version.minor + '.' + version.revision + '.' + version.patch;
     }
