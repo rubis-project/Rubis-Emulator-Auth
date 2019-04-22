@@ -1,6 +1,6 @@
 # Auth config
 host: "127.0.0.1"
-port: 444
+port: 6969
 
 # Mysql config
 mysql:
@@ -9,9 +9,8 @@ mysql:
   dbname: "rubis_auth"
   user: "root"
   password: ""
-http:
+io:
   port: 5050
-  password: "mySecretPassword"
 
 # Debug mode
 debug: false

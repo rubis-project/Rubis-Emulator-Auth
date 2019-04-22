@@ -25,4 +25,10 @@ export default class Server {
         let key: any = Object.keys(this.clients).filter((key: any) => this.clients[key].key === ticket)[0];
         return this.clients[key];
     }
+
+    broadcast(packet: string) {
+        this.clients.map(client => {
+            client.send(packet);
+        });
+    }
 }

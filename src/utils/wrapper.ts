@@ -51,7 +51,7 @@ export default class DWrapper {
         session.send(`Af1|0|0|1|-1`);
     }
     static sendCharacterList(session: any, subscriptionTime: number, characters: any[]) {
-        let stringList = '';
+        let stringList = '|1,2';
         if (characters) {
             console.log('characters', characters);
             // session.send(`AxK${subscriptionTime}|1,2|2,2`);

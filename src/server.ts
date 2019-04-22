@@ -2,25 +2,25 @@ import Config from './utils/config';
 import IConfig from './interfaces/iconfig';
 import Logger from './utils/logger';
 import Server from './network/server';
-import HttpServer from './http/server';
+import HttpServer from './io/server';
 import DatabaseManager from './database/manager';
 
 export default class AuthServer {
     static Config: IConfig;
     static server: Server;
-    static httpServer: HttpServer;
+    static ioServer: HttpServer;
 
     static initialize() {
         AuthServer.loadConfig();
-        AuthServer.loadLogger();
+        AuthServer.loadLogger(); 
         DatabaseManager.initialize(AuthServer.Config.mysql);
         AuthServer.loadServer();
     }
 
     static start() {
         AuthServer.server.listen(AuthServer.Config.host, AuthServer.Config.port);
-        AuthServer.httpServer.listen(81, () => {
-            console.log('HttpServer started on port 81')
+        AuthServer.ioServer.listen(AuthServer.Config.io.port, () => {
+            console.log(`IoServer listening on ${AuthServer.Config.io.port}`);
         });
     }
 
@@ -35,8 +35,8 @@ export default class AuthServer {
 
     static loadServer() {
         AuthServer.server = new Server();
-        AuthServer.httpServer = new HttpServer();
-        AuthServer.httpServer.initialize();
+        AuthServer.ioServer = new HttpServer();
+        AuthServer.ioServer.initialize();
     }
 }
 
